@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Javascript</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="header flex-container">
+        <section class="header-logo">
+            <img src="./media/logo.png" alt="Logo">
+        </section>
+        <nav class="header-nav">
+            <ul class="header-nav_list">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="">Descuentos</a></li>
+                <li><a href="">Tienda</a></li>
+            </ul>
+        </nav>
+        <section class="header-carrito">
+
+        </section>
+    </header>
+    <main class="principal">
+        <aside class="principal-filtros">
+            <h2 class="principal-filtros_title">Filtros</h2>
+            <h3 class="principal-filtros_subtitle">Categoría</h3>
+            <div class="principal-filtros_opciones">
+                <div class="opcion">
+                    <input type="checkbox" id="categoria-vestimenta">
+                    <label for="categoria-vestimenta">Vestimenta</label>
+                </div>
+                <div class="opcion">
+                    <input type="checkbox" id="categoria-comida">
+                    <label for="categoria-vestimenta">Comida</label>
+                </div>
+                <div class="opcion">
+                    <input type="checkbox" id="categoria-bebidas">
+                    <label for="categoria-vestimenta">Bebidas</label>
+                </div>
+                <div class="opcion">
+                    <input type="checkbox" id="categoria-electronica">
+                    <label for="categoria-electronica">Electrónica</label>
+                </div>
+            </div>
+            <h3 class="principal-filtros_subtitle">Tienda</h3>
+            <div class="principal-filtros_opciones">
+                <div class="opcion">
+                    <input type="checkbox" id="tienda-jumbo">
+                    <label for="tienda-jumbo">Jumbo</label>
+                </div>
+                <div class="opcion">
+                    <input type="checkbox" id="tienda-lider">
+                    <label for="tienda-lider">Lider</label>
+                </div>
+                <div class="opcion">
+                    <input type="checkbox" id="tienda-unimark">
+                    <label for="tienda-unimark">Unimark</label>
+                </div>
+            </div>
+            <h3 class="principal-filtros_subtitle">Club de Descuento</h3>
+        </aside>
+        <article class="principal-producto">
+            <img src="" alt="" class="principal-producto_foto">
+            <h2 class="principal-producto_title">Producto</h2>
+            <p class="principal-producto_subtitle">Descripción</p>
+            <h3 class="principal-producto_price">Precio: </h3>
+            <button class="principal-producto_button">Agregar al Carrito</button>
+        </article>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="./javascript/index.js"></script>
+</body>
+</html>

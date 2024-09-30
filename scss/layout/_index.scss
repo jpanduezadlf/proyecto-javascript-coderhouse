@@ -1,0 +1,22 @@
+.principal {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    
+    &-filtros {
+        background-color: $fondoClaro;
+        font-family: $fontHeadings;
+        @include flexSimple(column, center, center);
+        margin: 10vh;
+        padding: 10% 0;
+
+        &_title {
+            font-weight: 600;
+        }
+        &_subtitle {
+            font-weight: 500;
+        }
+        &_opciones {
+            @include flexSimple(column, flex-start, flex-start);
+        }
+    }
+}

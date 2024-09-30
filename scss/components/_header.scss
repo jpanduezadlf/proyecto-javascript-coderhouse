@@ -1,0 +1,29 @@
+.header {
+    background-color: $colorOpuesto;
+    color: $colorBlanco;
+    font-family: $fontBody;
+    @include flexSimple(row, space-around, center);
+    &-logo {
+        height: 100%;
+        padding: 5px;
+        img {
+            height: 60px;
+        }
+    }
+    &-nav {
+        &_list {
+            list-style-type: none;
+            @include flex(row, wrap, flex-start, center, 5vw);
+
+            & a {
+                text-decoration: none;
+                color: inherit;
+                transition: 0.5s;
+
+                &:hover {
+                    color: $primaryColor;
+                }
+            }
+        }
+    }
+}
