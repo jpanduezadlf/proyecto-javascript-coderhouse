@@ -16,7 +16,7 @@ let i = 0;
 let cants = [0, 0, 0, 0];
 while (i <= 3){
     cantidad = parseFloat(prompt(`Cuántos del producto ${i+1} quieres comprar? Este producto cuesta $${precioProds[i]}.
-        \nIngresa un valor entero mayor o igual a cero.`));
+Ingresa un valor entero mayor o igual a cero.`));
     if (cantidad >= 0 && cantidad % 1 == 0) {
         cants[i] = cantidad;
         i++;
@@ -28,7 +28,6 @@ while (i <= 3){
 let descuento = 0;
 
 let precioFinal = calcularPrecio(cants);
-alert(precioFinal);
 
 if (precioFinal >= 250000){
     precioFinal = calcularPrecio(cants, 0.5);
