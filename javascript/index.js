@@ -28,30 +28,23 @@ while (i <= 3){
 let descuento = 0;
 
 let precioFinal = calcularPrecio(cants);
+alert(precioFinal);
 
-switch (precioFinal) {
-    case (precioFinal >= 250_000):
-        precioFinal = calcularPrecio(cants, 0.5);
-        descuento = 50;
-        break;
-    case (precioFinal >= 200_000):
-        precioFinal = calcularPrecio(cants, 0.4);
-        descuento = 40;
-        break;
-    case (precioFinal >= 150_000):
-        precioFinal = calcularPrecio(cants, 0.3);
-        descuento = 30;
-        break;
-    case (precioFinal >= 100_000):
-        precioFinal = calcularPrecio(cants, 0.2);
-        descuento = 20;
-        break;
-    case (precioFinal >= 50_000):
-        precioFinal = calcularPrecio(cants, 0.1);
-        descuento = 10;
-        break;
-    default:
-        break;
+if (precioFinal >= 250000){
+    precioFinal = calcularPrecio(cants, 0.5);
+    descuento = 50;
+} else if (precioFinal >= 200000){
+    precioFinal = calcularPrecio(cants, 0.4);
+    descuento = 40;
+} else if (precioFinal >= 150000){
+    precioFinal = calcularPrecio(cants, 0.3);
+    descuento = 30;
+} else if (precioFinal >= 100000){
+    precioFinal = calcularPrecio(cants, 0.2);
+    descuento = 20;
+} else if (precioFinal >= 50000){
+    precioFinal = calcularPrecio(cants, 0.1);
+    descuento = 10;
 }
 
-alert(`El precio de tu compra es ${precioFinal}. Se le aplicó un ${descuento}% de descuento por la cantidad gastada.`)
+alert(`El precio de tu compra es $${precioFinal}. Se le aplicó un ${descuento}% de descuento por la cantidad gastada.`)
