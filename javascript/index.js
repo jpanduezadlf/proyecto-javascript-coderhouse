@@ -1,49 +1,109 @@
-let precioProds = [5000, 8000, 9500, 6800];
+let cant;
+let frase;
+let precio;
 
-const APLICAR_DESCUENTO = function(valor, descuento) {
-    return valor * (1 - descuento);
-}
-
-function calcularPrecio(cantidades, desc=0) {
-    let costoTotal = 0;
-    for(let i = 0; i < 4; i++){
-        costoTotal += cantidades[i] * precioProds[i];
+class Carrito {
+    constructor(productos) {
+        this.productos = productos;
+      	this.precio = this.calcularPrecio();
+        this.descuento = this.obtenerDescuento();
+      	this.aplicarDescuento = (valor, descuento) => valor * (1 - descuento);
+        this.precioFinal = this.aplicarDescuento(this.precio, this.descuento);
+        this.fraseSalida = this.construirFraseSalida();
     }
-    return APLICAR_DESCUENTO(costoTotal, desc);
-}
-
-let i = 0;
-let cants = [0, 0, 0, 0];
-while (i <= 3){
-    cantidad = parseFloat(prompt(`Cuántos del producto ${i+1} quieres comprar? Este producto cuesta $${precioProds[i]}.
-Ingresa un valor entero mayor o igual a cero.`));
-    if (cantidad >= 0 && cantidad % 1 == 0) {
-        cants[i] = cantidad;
-        i++;
-    } else {
-        alert("Recuerda ingresar únicamente números enteros mayores o iguales a 0.");
+    construirFraseSalida(){
+        if (this.productos.length == 0) {
+            return `No tienes productos en tu carrito. El costo de tu carrito es $0.`
+        } else if (this.productos.length == 1) {
+            return `Tu carrito contiene ${this.productos[0].cantidad} ${this.productos[0].nombre}. Su costo total es de $${this.precioFinal}. Dado el tamaño de tu compra, se aplicó un descuento de ${this.descuento*100}%.`
+        } else {
+            frase = `Tu carrito contiene `
+            for (let i = 0; i < this.productos.length; i++){
+                switch (i) {
+                    case (this.productos.length - 1):
+                        frase += `y ${this.productos[i].cantidad} ${this.productos[i].nombre}. Su costo total es de $${this.precioFinal}. Dado el tamaño de tu compra, se aplicó un descuento de ${this.descuento*100}%.`
+                        break;
+                    case (this.productos.length - 2):
+                        frase += `${this.productos[i].cantidad} ${this.productos[i].nombre} `
+                        break;
+                    default:
+                        frase += `${this.productos[i].cantidad} ${this.productos[i].nombre}, `
+                        break;
+                }
+            }
+            return frase;
+        }
+    }
+    calcularPrecio() {
+        return this.productos.reduce((total, producto) => total + producto.cantidad * producto.precio, 0);
+    }
+    obtenerDescuento() {  
+        if (this.precio >= 250000) 
+            return 0.5;  
+        if (this.precio >= 200000) 
+            return 0.4;  
+        if (this.precio >= 150000) 
+            return 0.3;  
+        if (this.precio >= 100000) 
+            return 0.2;  
+        if (this.precio >= 50000) 
+            return 0.1;  
+        return 0;
     }
 }
 
-let descuento = 0;
-
-let precioFinal = calcularPrecio(cants);
-
-if (precioFinal >= 250000){
-    precioFinal = calcularPrecio(cants, 0.5);
-    descuento = 50;
-} else if (precioFinal >= 200000){
-    precioFinal = calcularPrecio(cants, 0.4);
-    descuento = 40;
-} else if (precioFinal >= 150000){
-    precioFinal = calcularPrecio(cants, 0.3);
-    descuento = 30;
-} else if (precioFinal >= 100000){
-    precioFinal = calcularPrecio(cants, 0.2);
-    descuento = 20;
-} else if (precioFinal >= 50000){
-    precioFinal = calcularPrecio(cants, 0.1);
-    descuento = 10;
+class Producto {
+    constructor(nombre) {
+        this.nombre = nombre;
+        this.precio = Math.round(Math.random()*10000);
+        this.cantidad = this.preguntarCantidad();
+    }
+    preguntarCantidad() {
+        do {    
+            cant = parseFloat(prompt(`¿Cuántos de ${this.nombre} quieres comprar? Este producto cuesta $${this.precio}. Ingresa un valor entero mayor o igual a cero.`));    
+            if (cant >= 0 && Number.isInteger(cant)) {      
+                return cant;
+            } else {
+                alert("Recuerda ingresar únicamente números enteros mayores o iguales a 0.");    
+            }  
+        } while (cant < 0 || !Number.isInteger(cant));
+    }
 }
 
-alert(`El precio de tu compra es $${precioFinal}. Se le aplicó un ${descuento}% de descuento por la cantidad gastada.`)
+let carrito;
+function crearProductos() {
+    let productos = {}
+    let listaProductos = [];
+    let contador = 1;
+    let prefijo = "producto";
+    let error = 0;
+    do {
+        if (error == 0) {
+            productos[prefijo + contador] = prompt("¿Qué producto quieres agregar al carrito?");
+        }
+        masProductos = prompt("¿Quieres agregar otro producto? (1: Si - 0: No)");
+        contador += 1;
+        switch (masProductos) {
+            case "0":
+                contador = 0;
+                break;
+            case "1":
+                error = 0;
+                break;
+            default:
+                alert("Por favor introduzca únicamente 1 o 0 como respuesta a la pregunta")
+                error = 1;
+                break;
+        }
+    } while (contador > 0);
+
+    for(let producto in productos) {
+        nuevoProducto = new Producto(productos[producto]);
+        listaProductos.push(nuevoProducto);
+    }
+
+    carrito = new Carrito(listaProductos);
+    alert(carrito.fraseSalida);
+}
+
+crearProductos();
